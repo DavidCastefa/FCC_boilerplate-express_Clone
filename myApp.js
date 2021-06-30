@@ -2,6 +2,12 @@ var express = require('express');
 var app = express();
 require('dotenv').config();
 
+app.use("/json", (req, res, next) => {
+  console.log(req.method + " " + req.path + " " + req.ip)
+  next();
+  }
+);
+
 console.log("Hello World");
 
 // app.get("/", (req, res) => res.send("Hello Express"));

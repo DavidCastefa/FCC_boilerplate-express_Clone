@@ -10,7 +10,7 @@ app.use(bodyParser.json());
       app.use(express.json());
     See: http://robertocs.com/expressjs-error-body-parser-deprecated/ */
 
-app.use("/json", (req, res, next) => {
+app.use((req, res, next) => {
   console.log(req.method + " " + req.path + " - " + req.ip)
   next();
   }

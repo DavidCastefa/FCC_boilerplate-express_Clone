@@ -5,6 +5,10 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+ /* Apparently, you can now just use Express:
+      app.use(express.urlencoded({extended: false}));
+      app.use(express.json());
+    See: http://robertocs.com/expressjs-error-body-parser-deprecated/ */
 
 app.use("/json", (req, res, next) => {
   console.log(req.method + " " + req.path + " - " + req.ip)
@@ -41,7 +45,11 @@ app.get("/:word/echo", (req, res) => {
 
 app.get("/name", (req, res) => {
   res.json( { name: `${req.query.first} ${req.query.last}` } )
-    //Or, { name: req.query.first + " " + req.query.last 
+    //Or, { name: req.query.first + " " + req.query.last }
+});
+
+app.post("/name", (req, res) => {
+  res.json( { name: req.body.first + " " + req.body.last } )
 });
 
 module.exports = app;

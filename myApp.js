@@ -31,4 +31,8 @@ app.get("/now", (req, res, next) => {
   (req, res) => res.send( { time: req.time } )  // res.json() works too
 );
 
+app.get("/:word/echo", (req, res) => {
+  res.json( { echo: req.params.word} )
+});
+
 module.exports = app;
